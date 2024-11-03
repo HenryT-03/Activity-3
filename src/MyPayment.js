@@ -16,6 +16,11 @@ function Payment({ setDataF, setViewer })
     }
 
     return (<div>
+        <div>
+            <h1> Your Cart </h1>
+            
+        </div>
+
     <form onSubmit={handleSubmit(onSubmit)} className="container mt-5">
         <div className="form-group">
             <input {...register("fullName", { required: true })} placeholder="Full Name" className="form-control" />

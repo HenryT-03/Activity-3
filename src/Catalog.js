@@ -7,18 +7,14 @@ const Catalog = () =>
     const[catalog, setCatalog] = useState([]);
     const[cart, setCart] = useState([]);
     const[cartTotal, setCartTotal] = useState(0);
+    const[searchTerm, setSearchTerm] = useState("");
 
-    // const listItems = catalog.map((el) => (
-    //     <div key={el.id}>
-    //     <img src={el.image} width={100} />
-    //     {el.title}
-    //     {el.category}
-    //     {el.price}
-    //     <button type="button" onClick={() => removeFromCart(el)}> - </button>{" "}
-    //     <button type="button" variant="light" onClick={() => addToCart(el)}> +</button>
-    //     </div>
-    // ));
-    const listItems = catalog.map((item) =>
+    const filteredCatalog = catalog.filter((item) =>
+        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.category.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const listItems = filteredCatalog.map((item) =>
         <div class="row border-top border-bottom" key={item.id}>
             <div class="row main align-items center">
                 <div class="col-2">
@@ -89,7 +85,6 @@ const Catalog = () =>
             const data = await someResponse.json();
             // update State Variable
             setCatalog(data);
-            console.log(data);
         };
 
         fetchData();
@@ -104,6 +99,10 @@ const Catalog = () =>
     return (
         <div>
             STORE SE/ComS3190
+
+            <input type="text" placeholder="Search Products" value={searchTerm} style={{width: '100%', padding: '10px', marginBottom: '20px'}}
+            onChange={(e) => setSearchTerm(e.target.value)}>
+            </input>
             <div class="card">
                 <div class="row">
                     {/* HERE, IT IS THE SHOPING CART */}
