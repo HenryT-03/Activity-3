@@ -64,19 +64,27 @@ function App() {
       setCatalog(data);
       setFilteredCatalog(data);
       console.log(data);
-    }
-  })
+    };
+    fetchData();
+  }, []);
 
   return (
     <Router>
       <Routes>
-        <Route path='/' element={
+        {/* <Route path='/' element={
+          <div>
           <LeftNavBar>
             catalog={catalog}
             setCatalog={setCatalog}
             filteredCatalog={filteredCatalog}
             setFilteredCatalog={setFilteredCatalog}
-        </LeftNavBar>}></Route>
+        </LeftNavBar>
+        <div>
+          <h1> Product Page </h1>
+          <ShowProducts catalog={filteredCatalog}></ShowProducts>
+        </div>
+        </div>}></Route> */}
+        <Route path= "/" element={<Catalog></Catalog>}></Route>
         <Route path="Catalog" element={<Catalog></Catalog>}> </Route>
         <Route path="Payment" element={<Payment dataF={dataF} setDataF={setDataF} viewer={viewer} setViewer={setViewer}></Payment>}></Route>
       </Routes>
