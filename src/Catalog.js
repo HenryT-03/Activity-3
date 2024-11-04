@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-route
 import { Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.css";
 
-const Catalog = () => {
+const Catalog = ({ cart, setCart }) => {
     const [catalog, setCatalog] = useState([]);
     const [filteredCatalog, setFilteredCatalog] = useState([]); // State for filtered catalog
-    const [cart, setCart] = useState([]);
+    
     const [cartTotal, setCartTotal] = useState(0);
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -166,7 +166,7 @@ const Catalog = () => {
                                 <div className="col">
                                     <h4>
                                         <b>3190 Shopping Cart</b>
-                                        <button onClick={() => navigate("/Payment")}>Purchase Cart</button>
+                                        <button onClick={(cart) => navigate("/Payment")}>Purchase Cart</button>
                                     </h4>
                                 </div>
                                 <div className="col align-self-center text-right text-muted">

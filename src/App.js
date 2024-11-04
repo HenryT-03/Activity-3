@@ -53,6 +53,7 @@ function App() {
   const [catalog, setCatalog] = useState([]);
   const [filteredCatalog, setFilteredCatalog] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [cart, setCart] = useState([]);
   useEffect(() => {
     const fetchData = async() => {
       const response = await fetch("/products.json");
@@ -71,29 +72,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path='/' element={
-          <div>
-          <LeftNavBar>
-            catalog={catalog}
-            setCatalog={setCatalog}
-            filteredCatalog={filteredCatalog}
-            setFilteredCatalog={setFilteredCatalog}
-        </LeftNavBar>
-        <div>
-          <h1> Product Page </h1>
-          <ShowProducts catalog={filteredCatalog}></ShowProducts>
-        </div>
-        </div>}></Route> */}
-        <Route path= "/" element={<Catalog></Catalog>}></Route>
-        <Route path="Catalog" element={<Catalog></Catalog>}> </Route>
-        <Route path="Payment" element={<Payment dataF={dataF} setDataF={setDataF} viewer={viewer} setViewer={setViewer}></Payment>}></Route>
+        <Route path= "/" element={<Catalog cart={cart} setCart={setCart}></Catalog>}></Route>
+        <Route path="Catalog" element={<Catalog cart ={cart} setCart ={setCart}> </Catalog>}> </Route>
+        <Route path="Payment" element={<Payment dataF={dataF} setDataF={setDataF} viewer={viewer} setViewer={setViewer} cart={cart}></Payment>}></Route>
       </Routes>
     </Router>
   )
-  // return (<div>
-  //   <Payment dataF={dataF} setDataF={setDataF} viewer={viewer} setViewer={setViewer}></Payment>
-  //   <Summary dataF={dataF} setDataF={setDataF} setViewer={setViewer}></Summary>
-  // </div>)
 }
 
 export default App;

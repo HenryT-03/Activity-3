@@ -1,11 +1,18 @@
 import { useForm } from "react-hook-form";
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
-import React from 'react';
+import React, {useState, useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.css"
 
-function Payment({ setDataF, setViewer })
+function Payment({ setDataF, setViewer, cart })
 {
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const cartItems = cart.map((item, index) => (
+        <div key={index}>
+            <img className="img-fluid" src={item.image} width={150} alt={item.title} />
+            {item.title} ${item.price}
+        </div>
+    ));
 
     const onSubmit = data =>
     {
@@ -13,12 +20,15 @@ function Payment({ setDataF, setViewer })
         console.log(data.fullName);
         setDataF(data);
         setViewer(1);
+        
     }
-
+    const navigate = useNavigate();
     return (<div>
         <div>
             <h1> Your Cart </h1>
-            
+            <div>
+                {cartItems}
+            </div>
         </div>
 
     <form onSubmit={handleSubmit(onSubmit)} className="container mt-5">
@@ -54,7 +64,9 @@ function Payment({ setDataF, setViewer })
         {errors.zip && <p>Zip is required.</p>}
         </div>
 
-        <button type="submit">Submit</button>
+    
+        <button onClick={() => navigate("/Summary")}>Purchase</button>
+        <button onClick={() => navigate("/")}> Go Back </button>
     </form>
     </div>)
 }
