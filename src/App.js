@@ -70,11 +70,10 @@ function App() {
   return (
     <Router>
       <div style={{ display: 'flex' }}>
-        <LeftNavBar /> {/* Place LeftNavBar here */}
+        <LeftNavBar />
         <div style={{ flex: 1, padding: '20px' }}>
           <Routes>
             <Route path="/" element={<Catalog cart={cart} setCart={setCart} cartTotal={cartTotal} setCartTotal={setCartTotal} />} />
-            <Route path="Catalog" element={<Catalog cart={cart} setCart={setCart} cartTotal={cartTotal} setCartTotal={setCartTotal} />} />
             <Route path="Payment" element={<Payment dataF={dataF} setDataF={setDataF} viewer={viewer} setViewer={setViewer} cart={cart} />} />
             <Route path="Summary" element={<Summary dataF={dataF} setDataF={setDataF} setViewer={setViewer} cart={cart} setCart={setCart} cartTotal={cartTotal} />} />
           </Routes>

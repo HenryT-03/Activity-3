@@ -30,56 +30,6 @@ const LeftNavBar = ({ catalog, setFilteredCatalog, categories }) => {
             <div className="text-center mb-4">
                 <img src={Logo} alt="Logo" className="img-fluid" />
             </div>
-
-            <div className="mb-4">
-                <p>Categories:</p>
-                <div className="d-flex flex-wrap">
-                    <Button
-                        variant="warning"
-                        className="mb-2 me-2 btn-sm"
-                        onClick={() => filterCategory("electronics")}
-                    >
-                        Electronics
-                    </Button>
-                    <Button
-                        variant="warning"
-                        className="mb-2 me-2 btn-sm"
-                        onClick={() => filterCategory("jewelery")}
-                    >
-                        Jewelry
-                    </Button>
-                    <Button
-                        variant="warning"
-                        className="mb-2 me-2 btn-sm"
-                        onClick={() => filterCategory("men's clothing")}
-                    >
-                        Men's Clothing
-                    </Button>
-                    <Button
-                        variant="warning"
-                        className="mb-2 me-2 btn-sm"
-                        onClick={() => filterCategory("women's clothing")}
-                    >
-                        Women's Clothing
-                    </Button>
-                </div>
-            </div>
-
-            
-
-            <div className="mb-4">
-                <InputGroup>
-                    <FormControl
-                        placeholder="Search products..."
-                        aria-label="Search products"
-                        value={searchTerm}
-                        onChange={handleChange}
-                    />
-                    <Button variant="outline-secondary" onClick={clearSearch}>
-                        <i className="bi bi-x"></i>
-                    </Button>
-                </InputGroup>
-            </div>
         </div>
     );
 };
