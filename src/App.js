@@ -5,7 +5,6 @@ import Summary from "./MySummary.js"
 import Catalog from "./Catalog.js"
 import Payment from "./MyPayment.js"
 import LeftNavBar from './LeftNavBar.js';
-
 import './App.css';
 
 function ShowProducts({ catalog }) {
@@ -37,7 +36,6 @@ function ShowProducts({ catalog }) {
 }
 
 function App() {
-
   const [dataF, setDataF] = useState({
     fullName: '',
     email: '',
@@ -47,7 +45,7 @@ function App() {
     city: '',
     state: '',
     zip: '',
-  })
+  });
 
   const [viewer, setViewer] = useState(0); // by default, homepage catalog
   const [catalog, setCatalog] = useState([]);
@@ -55,31 +53,35 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+
   useEffect(() => {
-    const fetchData = async() => {
+    const fetchData = async () => {
       const response = await fetch("/products.json");
       const data = await response.json();
       const responseCategories = await fetch("/categories.json");
       const dataCategories = await responseCategories.json();
       setCategories(dataCategories);
-      console.log(dataCategories);
       setCatalog(data);
       setFilteredCatalog(data);
-      console.log(data);
     };
     fetchData();
   }, []);
 
   return (
     <Router>
-      <Routes>
-        <Route path= "/" element={<Catalog cart={cart} setCart={setCart} cartTotal={cartTotal} setCartTotal={setCartTotal}></Catalog>}></Route>
-        <Route path="Catalog" element={<Catalog cart ={cart} setCart ={setCart} cartTotal={cartTotal} setCartTotal={setCartTotal}> </Catalog>}> </Route>
-        <Route path="Payment" element={<Payment dataF={dataF} setDataF={setDataF} viewer={viewer} setViewer={setViewer} cart={cart}></Payment>}></Route>
-        <Route path="Summary" element={<Summary dataF={dataF} setDataF={setDataF} setViewer={setViewer} cart={cart} setCart={setCart} cartTotal={cartTotal}></Summary>}></Route>
-      </Routes>
+      <div style={{ display: 'flex' }}>
+        <LeftNavBar /> {/* Place LeftNavBar here */}
+        <div style={{ flex: 1, padding: '20px' }}>
+          <Routes>
+            <Route path="/" element={<Catalog cart={cart} setCart={setCart} cartTotal={cartTotal} setCartTotal={setCartTotal} />} />
+            <Route path="Catalog" element={<Catalog cart={cart} setCart={setCart} cartTotal={cartTotal} setCartTotal={setCartTotal} />} />
+            <Route path="Payment" element={<Payment dataF={dataF} setDataF={setDataF} viewer={viewer} setViewer={setViewer} cart={cart} />} />
+            <Route path="Summary" element={<Summary dataF={dataF} setDataF={setDataF} setViewer={setViewer} cart={cart} setCart={setCart} cartTotal={cartTotal} />} />
+          </Routes>
+        </div>
+      </div>
     </Router>
-  )
+  );
 }
 
 export default App;
