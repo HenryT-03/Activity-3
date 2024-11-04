@@ -54,6 +54,7 @@ function App() {
   const [filteredCatalog, setFilteredCatalog] = useState([]);
   const [categories, setCategories] = useState([]);
   const [cart, setCart] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
   useEffect(() => {
     const fetchData = async() => {
       const response = await fetch("/products.json");
@@ -72,9 +73,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path= "/" element={<Catalog cart={cart} setCart={setCart}></Catalog>}></Route>
-        <Route path="Catalog" element={<Catalog cart ={cart} setCart ={setCart}> </Catalog>}> </Route>
+        <Route path= "/" element={<Catalog cart={cart} setCart={setCart} cartTotal={cartTotal} setCartTotal={setCartTotal}></Catalog>}></Route>
+        <Route path="Catalog" element={<Catalog cart ={cart} setCart ={setCart} cartTotal={cartTotal} setCartTotal={setCartTotal}> </Catalog>}> </Route>
         <Route path="Payment" element={<Payment dataF={dataF} setDataF={setDataF} viewer={viewer} setViewer={setViewer} cart={cart}></Payment>}></Route>
+        <Route path="Summary" element={<Summary dataF={dataF} setDataF={setDataF} setViewer={setViewer} cart={cart} setCart={setCart} cartTotal={cartTotal}></Summary>}></Route>
       </Routes>
     </Router>
   )

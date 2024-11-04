@@ -3,11 +3,10 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-route
 import { Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.css";
 
-const Catalog = ({ cart, setCart }) => {
+const Catalog = ({ cart, setCart, cartTotal, setCartTotal }) => {
     const [catalog, setCatalog] = useState([]);
     const [filteredCatalog, setFilteredCatalog] = useState([]); // State for filtered catalog
     
-    const [cartTotal, setCartTotal] = useState(0);
     const [searchTerm, setSearchTerm] = useState("");
 
     const filterCategory = (tag) => {

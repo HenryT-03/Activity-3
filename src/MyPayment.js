@@ -20,7 +20,7 @@ function Payment({ setDataF, setViewer, cart })
         console.log(data.fullName);
         setDataF(data);
         setViewer(1);
-        
+        navigate("/Summary")
     }
     const navigate = useNavigate();
     return (<div>
@@ -64,8 +64,8 @@ function Payment({ setDataF, setViewer, cart })
         {errors.zip && <p>Zip is required.</p>}
         </div>
 
-    
-        <button onClick={() => navigate("/Summary")}>Purchase</button>
+        
+        <button type="submit">Purchase</button>
         <button onClick={() => navigate("/")}> Go Back </button>
     </form>
     </div>)
